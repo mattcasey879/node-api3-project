@@ -60,8 +60,8 @@ router.delete("/:id", validateUserId, (req, res, next) => {
 router.get("/:id/posts", validateUserId, (req, res, next) => {
   // RETURN THE ARRAY OF USER POSTS
   // this needs a middleware to verify user id
-  postmod
-    .getById(req.params.id)
+  usermod
+    .getUserPosts(req.params.id)
     .then((post) => res.status(200).json(post))
     .catch(next);
 });
@@ -77,7 +77,7 @@ router.post("/:id/posts", validateUserId, validatePost, (req, res, next) => {
     .catch(next);
 });
 // eslint-disable-next-line
-router.use((err, req, res) => {
+router.use((err, req, res, next) => {
   console.log(err.message);
   res
     .status(err.status || 500)

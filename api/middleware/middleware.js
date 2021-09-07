@@ -17,7 +17,7 @@ function validateUserId(req, res, next) {
     if (user) {  
       req.arr = user
       next()
-    } else {
+    } else { 
       next({ status: 404, message: "user not found" })
     }
   })
@@ -40,7 +40,7 @@ function validatePost(req, res, next) {
 // DO YOUR MAGIC
 const { text } = req.body
 if (!text) {
-  next({ status: 400 , message: "missing text field" })
+  next({ status: 400 , message: "missing required text" })
 } else {
   next()
 }
