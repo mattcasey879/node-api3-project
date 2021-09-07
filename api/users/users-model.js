@@ -30,7 +30,7 @@ function insert(user) {
   return db('users')
     .insert(user)
     .then(ids => {
-      return getById(ids[0]);
+      return getById({id: ids[0]});
     });
 }
 
@@ -38,7 +38,7 @@ function update(id, changes) {
   return db('users')
     .where({ id })
     .update(changes)
-    .then(rows => {
+    .then(() => {
       return getById(id);
     });
 }
